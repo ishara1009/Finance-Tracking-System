@@ -237,13 +237,7 @@ frontend/
 - Protected API routes
 - Secure MongoDB connection with SSL
 
-## 🌐 Environment Variables
 
-Backend `.env` file:
-```
-MONGODB_URI=mongodb+srv://ishghn1234:ishghn2000@cluster0.vo2av.mongodb.net/
-DATABASE_NAME=finance_tracker
-JWT_SECRET_KEY=your-secret-key-change-this-in-production
 ```
 
 ## 🐛 Troubleshooting
