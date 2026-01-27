@@ -68,7 +68,7 @@ const Dashboard = () => {
     <div className="dashboard">
       <nav className="dashboard-nav">
         <div className="nav-brand">
-          <h2>💰 Finance Tracker</h2>
+          <h2>Finance Tracker</h2>
         </div>
         <div className="nav-user">
           {user?.profile_picture && (
@@ -79,6 +79,9 @@ const Dashboard = () => {
             />
           )}
           <span>Welcome, {user?.name}!</span>
+          <button onClick={() => navigate('/profile')} className="btn-profile">
+            Settings
+          </button>
           <button onClick={handleLogout} className="btn-logout">
             Logout
           </button>

@@ -157,3 +157,87 @@ def reset_password():
         
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+@auth_bp.route('/update-profile', methods=['PUT'])
+@jwt_required()
+def update_profile():
+    try:
+        user_id = get_jwt_identity()
+        data = request.get_json()
+        
+        # Prepare update fields
+        update_fields = {}
+        
+        if 'name' in data and data['name']:
+            update_fields['name'] = data['name']
+        
+        if 'phone_number' in data:
+            update_fields['phone_number'] = data['phone_number']
+        
+        if 'profile_picture' in data:
+            update_fields['profile_picture'] = data['profile_picture']
+        
+        if not update_fields:
+            return jsonify({'error': 'No fields to update'}), 400
+        
+        # Update user
+        result = users_collection.update_one(
+            {'_id': ObjectId(user_id)},
+            {'$set': update_fields}
+        )
+        
+        if result.modified_count == 0:
+            return jsonify({'error': 'No changes made'}), 400
+        
+        # Get updated user
+        updated_user = users_collection.find_one({'_id': ObjectId(user_id)})
+        user_data = {
+            'id': str(updated_user['_id']),
+            'email': updated_user['email'],
+            'name': updated_user['name'],
+            'profile_picture': updated_user.get('profile_picture'),
+            'phone_number': updated_user.get('phone_number')
+        }
+        
+        return jsonify({
+            'message': 'Profile updated successfully',
+            'user': user_data
+        }), 200
+        
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@auth_bp.route('/change-password', methods=['PUT'])
+@jwt_required()
+def change_password():
+    try:
+        user_id = get_jwt_identity()
+        data = request.get_json()
+        
+        # Validate required fields
+        if not all(key in data for key in ['current_password', 'new_password']):
+            return jsonify({'error': 'Missing required fields'}), 400
+        
+        # Find user
+        user = users_collection.find_one({'_id': ObjectId(user_id)})
+        
+        if not user:
+            return jsonify({'error': 'User not found'}), 404
+        
+        # Verify current password
+        if not User.verify_password(user['password'], data['current_password']):
+            return jsonify({'error': 'Current password is incorrect'}), 401
+        
+        # Hash new password
+        new_hashed_password = User('temp@temp.com', data['new_password'], 'temp').password
+        
+        # Update password
+        users_collection.update_one(
+            {'_id': ObjectId(user_id)},
+            {'$set': {'password': new_hashed_password}}
+        )
+        
+        return jsonify({'message': 'Password changed successfully'}), 200
+        
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500

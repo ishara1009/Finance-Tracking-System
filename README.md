@@ -1,8 +1,8 @@
-# 💰 Finance Tracker Web Application
+# Finance Tracker Web Application
 
 A full-stack web application for tracking income and expenses with beautiful visualizations and analytics.
 
-## 🚀 Features
+##  Features
 
 - **User Authentication**: Secure signup and login system with JWT tokens
 - **Dashboard**: Comprehensive overview of financial health
@@ -12,7 +12,7 @@ A full-stack web application for tracking income and expenses with beautiful vis
 - **Transaction Management**: View, filter, and delete transactions
 - **Responsive Design**: Works seamlessly on desktop and mobile devices
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Backend
 - **Python**: Flask framework
@@ -27,7 +27,7 @@ A full-stack web application for tracking income and expenses with beautiful vis
 - **Axios**: HTTP client
 - **CSS3**: Custom styling with gradients and animations
 
-## 📋 Prerequisites
+## Prerequisites
 
 Before running this application, make sure you have:
 
@@ -35,7 +35,7 @@ Before running this application, make sure you have:
 - Node.js 14+ and npm installed
 - MongoDB account (using provided connection string)
 
-## 🔧 Installation & Setup
+##  Installation & Setup
 
 ### Backend Setup
 
@@ -93,7 +93,7 @@ npm start
 
 The frontend will start on `http://localhost:3000`
 
-## 📱 Application Structure
+##  Application Structure
 
 ### Backend Structure
 ```
@@ -154,7 +154,7 @@ frontend/
 └── package.json
 ```
 
-## 🔐 API Endpoints
+##  API Endpoints
 
 ### Authentication
 - `POST /api/auth/signup` - Register new user
@@ -176,7 +176,7 @@ frontend/
 ### Dashboard
 - `GET /api/dashboard/summary` - Get financial summary and analytics
 
-## 💡 Usage Guide
+## Usage Guide
 
 1. **Sign Up**: Create a new account with your name, email, and password
 2. **Login**: Sign in with your credentials
@@ -226,7 +226,7 @@ frontend/
 - **Bar Chart**: Income vs Expense comparison
 - **Pie Charts**: Category-wise breakdown for both income and expenses
 
-## 🔒 Security Features
+##  Security Features
 
 - Password hashing using bcrypt
 - JWT-based authentication
@@ -248,13 +248,13 @@ frontend/
 - **API connection error**: Ensure backend is running on port 5000
 - **Charts not displaying**: Make sure `recharts` is properly installed
 
-## 📝 Development Notes
+## Development Notes
 
 - The application uses CORS to allow frontend-backend communication
 - JWT tokens expire after 24 hours (configurable in `config.py`)
 - MongoDB indexes are created automatically on user email and transaction user_id fields
 
-## 🚀 Production Deployment
+## Production Deployment
 
 For production deployment:
 
@@ -266,14 +266,14 @@ For production deployment:
 6. Build React app with `npm run build`
 7. Serve React build with a web server (e.g., Nginx)
 
-## 📄 License
+## License
 
 This project is open source and available for educational purposes.
 
-## 👨‍💻 Author
+## Author
 
 Finance Tracker - A comprehensive solution for personal finance management
 
 ---
 
-**Happy Tracking! 💰📊**
+**Happy Tracking! **
