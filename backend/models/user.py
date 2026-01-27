@@ -3,10 +3,11 @@ from datetime import datetime
 import bcrypt
 
 class User:
-    def __init__(self, email, password, name):
+    def __init__(self, email, password, name, profile_picture=None):
         self.email = email
         self.password = self._hash_password(password)
         self.name = name
+        self.profile_picture = profile_picture
         self.created_at = datetime.utcnow()
     
     def _hash_password(self, password):
@@ -21,5 +22,6 @@ class User:
             'email': self.email,
             'password': self.password,
             'name': self.name,
+            'profile_picture': self.profile_picture,
             'created_at': self.created_at
         }

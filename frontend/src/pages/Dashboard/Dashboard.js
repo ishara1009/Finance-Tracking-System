@@ -71,6 +71,13 @@ const Dashboard = () => {
           <h2>💰 Finance Tracker</h2>
         </div>
         <div className="nav-user">
+          {user?.profile_picture && (
+            <img 
+              src={user.profile_picture} 
+              alt="Profile" 
+              className="nav-profile-picture"
+            />
+          )}
           <span>Welcome, {user?.name}!</span>
           <button onClick={handleLogout} className="btn-logout">
             Logout

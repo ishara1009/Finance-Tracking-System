@@ -3,8 +3,14 @@ from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identi
 from bson import ObjectId
 from database import users_collection
 from models.user import User
+import base64
+import os
 
 auth_bp = Blueprint('auth', __name__)
+
+# Create uploads directory if it doesn't exist
+UPLOAD_FOLDER = 'uploads/profile_pictures'
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 @auth_bp.route('/signup', methods=['POST'])
 def signup():
@@ -19,21 +25,16 @@ def signup():
         if users_collection.find_one({'email': data['email']}):
             return jsonify({'error': 'Email already registered'}), 400
         
+        # Handle profile picture (base64 encoded)
+        profile_picture = data.get('profile_picture', None)
+        
         # Create new user
-        user = User(data['email'], data['password'], data['name'])
+        user = User(data['email'], data['password'], data['name'], profile_picture)
         result = users_collection.insert_one(user.to_dict())
         
-        # Create access token
-        access_token = create_access_token(identity=str(result.inserted_id))
-        
         return jsonify({
-            'message': 'User created successfully',
-            'token': access_token,
-            'user': {
-                'id': str(result.inserted_id),
-                'email': data['email'],
-                'name': data['name']
-            }
+            'message': 'User created successfully. Please login to continue.',
+            'user_id': str(result.inserted_id)
         }), 201
         
     except Exception as e:
@@ -67,7 +68,8 @@ def login():
             'user': {
                 'id': str(user['_id']),
                 'email': user['email'],
-                'name': user['name']
+                'name': user['name'],
+                'profile_picture': user.get('profile_picture')
             }
         }), 200
         
@@ -88,7 +90,8 @@ def verify():
             'user': {
                 'id': str(user['_id']),
                 'email': user['email'],
-                'name': user['name']
+                'name': user['name'],
+                'profile_picture': user.get('profile_picture')
             }
         }), 200
         

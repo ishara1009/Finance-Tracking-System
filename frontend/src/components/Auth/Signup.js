@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { signup } from '../../api/api';
-import { useAuth } from '../../context/AuthContext';
 import './Signup.css';
 
 const Signup = () => {
@@ -11,16 +10,44 @@ const Signup = () => {
     password: '',
     confirmPassword: '',
   });
+  const [profilePicture, setProfilePicture] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
-  const { loginUser } = useAuth();
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      // Check file size (max 5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        setError('Image size should be less than 5MB');
+        return;
+      }
+
+      // Check file type
+      if (!file.type.startsWith('image/')) {
+        setError('Please select a valid image file');
+        return;
+      }
+
+      setProfilePicture(file);
+
+      // Create preview URL
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewUrl(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -43,15 +70,39 @@ const Signup = () => {
 
     try {
       const { confirmPassword, ...signupData } = formData;
-      const response = await signup(signupData);
-      loginUser(response.data.token, response.data.user);
-      navigate('/dashboard');
+      
+      // Add profile picture if selected
+      if (previewUrl) {
+        signupData.profile_picture = previewUrl;
+      }
+
+      await signup(signupData);
+      setSuccess(true);
+      
+      // Show success message and redirect to login after 2 seconds
+      setTimeout(() => {
+        navigate('/login');
+      }, 2000);
     } catch (err) {
       setError(err.response?.data?.error || 'Signup failed. Please try again.');
     } finally {
       setLoading(false);
     }
   };
+
+  if (success) {
+    return (
+      <div className="signup-container">
+        <div className="signup-card">
+          <div className="success-message-box">
+            <div className="success-icon">✓</div>
+            <h2>Account Created Successfully!</h2>
+            <p>Redirecting you to login page...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="signup-container">
@@ -64,6 +115,28 @@ const Signup = () => {
         {error && <div className="error-message">{error}</div>}
 
         <form onSubmit={handleSubmit} className="signup-form">
+          <div className="profile-picture-section">
+            <div className="profile-picture-preview">
+              {previewUrl ? (
+                <img src={previewUrl} alt="Profile Preview" />
+              ) : (
+                <div className="placeholder-avatar">
+                  <span>📷</span>
+                </div>
+              )}
+            </div>
+            <label htmlFor="profile-picture" className="upload-label">
+              Choose Profile Picture (Optional)
+            </label>
+            <input
+              type="file"
+              id="profile-picture"
+              accept="image/*"
+              onChange={handleImageChange}
+              className="file-input"
+            />
+          </div>
+
           <div className="form-group">
             <label htmlFor="name">Full Name</label>
             <input
