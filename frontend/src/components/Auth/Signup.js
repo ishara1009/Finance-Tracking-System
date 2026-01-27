@@ -9,6 +9,7 @@ const Signup = () => {
     email: '',
     password: '',
     confirmPassword: '',
+    phone_number: '',
   });
   const [profilePicture, setProfilePicture] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
@@ -160,6 +161,18 @@ const Signup = () => {
               onChange={handleChange}
               placeholder="Enter your email"
               required
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="phone_number">Phone Number (Optional)</label>
+            <input
+              type="tel"
+              id="phone_number"
+              name="phone_number"
+              value={formData.phone_number}
+              onChange={handleChange}
+              placeholder="Enter your phone number"
             />
           </div>
 

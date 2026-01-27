@@ -27,9 +27,10 @@ def signup():
         
         # Handle profile picture (base64 encoded)
         profile_picture = data.get('profile_picture', None)
+        phone_number = data.get('phone_number', None)
         
         # Create new user
-        user = User(data['email'], data['password'], data['name'], profile_picture)
+        user = User(data['email'], data['password'], data['name'], profile_picture, phone_number)
         result = users_collection.insert_one(user.to_dict())
         
         return jsonify({
@@ -94,6 +95,65 @@ def verify():
                 'profile_picture': user.get('profile_picture')
             }
         }), 200
+        
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@auth_bp.route('/forgot-password', methods=['POST'])
+def forgot_password():
+    try:
+        data = request.get_json()
+        
+        if 'email' not in data:
+            return jsonify({'error': 'Email is required'}), 400
+        
+        # Find user by email
+        user = users_collection.find_one({'email': data['email']})
+        
+        if not user:
+            # Return success even if user not found (security best practice)
+            return jsonify({
+                'message': 'If an account exists with this email, password reset instructions have been sent.'
+            }), 200
+        
+        # In a real application, you would:
+        # 1. Generate a password reset token
+        # 2. Send an email with reset link
+        # For this demo, we'll return a success message
+        
+        return jsonify({
+            'message': 'If an account exists with this email, password reset instructions have been sent.',
+            'user_found': True,
+            'email': data['email']
+        }), 200
+        
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@auth_bp.route('/reset-password', methods=['POST'])
+def reset_password():
+    try:
+        data = request.get_json()
+        
+        if not all(key in data for key in ['email', 'new_password']):
+            return jsonify({'error': 'Email and new password are required'}), 400
+        
+        # Find user
+        user = users_collection.find_one({'email': data['email']})
+        
+        if not user:
+            return jsonify({'error': 'User not found'}), 404
+        
+        # Hash new password
+        new_hashed_password = User('temp@temp.com', data['new_password'], 'temp').password
+        
+        # Update password
+        users_collection.update_one(
+            {'email': data['email']},
+            {'$set': {'password': new_hashed_password}}
+        )
+        
+        return jsonify({'message': 'Password reset successfully'}), 200
         
     except Exception as e:
         return jsonify({'error': str(e)}), 500

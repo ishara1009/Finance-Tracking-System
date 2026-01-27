@@ -77,6 +77,10 @@ const Login = () => {
           <button type="submit" className="btn-primary" disabled={loading}>
             {loading ? 'Signing in...' : 'Sign In'}
           </button>
+
+          <div className="forgot-password-link">
+            <Link to="/forgot-password">Forgot your password?</Link>
+          </div>
         </form>
 
         <div className="login-footer">

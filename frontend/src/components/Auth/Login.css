@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(rgba(102, 126, 234, 0.85), rgba(118, 75, 162, 0.85)),
+  background: linear-gradient(rgba(102, 126, 234, 0.5), rgba(118, 75, 162, 0.5)),
               url(../../assets/image1.jpg);
   background-size: cover;
   background-position: center;
@@ -103,6 +103,22 @@
 .btn-primary:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+.forgot-password-link {
+  text-align: center;
+  margin-top: 16px;
+}
+
+.forgot-password-link a {
+  color: #667eea;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.forgot-password-link a:hover {
+  text-decoration: underline;
 }
 
 .error-message {
