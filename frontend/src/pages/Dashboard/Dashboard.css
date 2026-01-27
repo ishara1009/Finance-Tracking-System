@@ -224,7 +224,52 @@
   font-weight: 500;
 }
 
-.charts-section,
+/* Dashboard Grid Layout */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 24px;
+  align-items: start;
+}
+
+.charts-section {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f0f0f0;
+}
+
+.transactions-sidebar {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f0f0f0;
+  position: sticky;
+  top: 24px;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+}
+
+.transactions-sidebar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.transactions-sidebar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.transactions-sidebar::-webkit-scrollbar-thumb {
+  background: #667eea;
+  border-radius: 10px;
+}
+
+.transactions-sidebar::-webkit-scrollbar-thumb:hover {
+  background: #5568d3;
+}
+
 .transactions-section {
   background: white;
   border-radius: 12px;
@@ -315,5 +360,16 @@
   .btn-success,
   .btn-danger {
     flex: 1;
+  }
+
+  /* Stack layout on tablet/mobile */
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .transactions-sidebar {
+    position: relative;
+    top: 0;
+    max-height: none;
   }
 }

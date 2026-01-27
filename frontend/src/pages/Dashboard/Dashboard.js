@@ -136,18 +136,21 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Charts */}
-        <div className="charts-section">
-          <Chart summary={summary} />
-        </div>
+        {/* Main Content Grid */}
+        <div className="dashboard-grid">
+          {/* Left Column - Charts */}
+          <div className="charts-section">
+            <Chart summary={summary} incomes={incomes} expenses={expenses} />
+          </div>
 
-        {/* Transactions */}
-        <div className="transactions-section">
-          <TransactionList
-            incomes={incomes}
-            expenses={expenses}
-            onRefresh={fetchData}
-          />
+          {/* Right Sidebar - Transactions */}
+          <div className="transactions-sidebar">
+            <TransactionList
+              incomes={incomes}
+              expenses={expenses}
+              onRefresh={fetchData}
+            />
+          </div>
         </div>
       </div>
 
