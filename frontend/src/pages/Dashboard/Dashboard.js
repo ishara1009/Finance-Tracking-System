@@ -107,7 +107,6 @@ const Dashboard = () => {
         {/* Summary Cards */}
         <div className="summary-cards">
           <div className="card card-income">
-            <div className="card-icon">📈</div>
             <div className="card-content">
               <h3>Total Income</h3>
               <p className="amount">${summary?.summary?.total_income?.toFixed(2) || '0.00'}</p>
@@ -116,7 +115,6 @@ const Dashboard = () => {
           </div>
 
           <div className="card card-expense">
-            <div className="card-icon">📉</div>
             <div className="card-content">
               <h3>Total Expense</h3>
               <p className="amount">${summary?.summary?.total_expense?.toFixed(2) || '0.00'}</p>
@@ -125,7 +123,6 @@ const Dashboard = () => {
           </div>
 
           <div className="card card-balance">
-            <div className="card-icon">💵</div>
             <div className="card-content">
               <h3>Balance</h3>
               <p className={`amount ${summary?.summary?.balance >= 0 ? 'positive' : 'negative'}`}>
