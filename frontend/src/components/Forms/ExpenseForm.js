@@ -79,7 +79,7 @@ const ExpenseForm = ({ onClose, onSuccess }) => {
 
         <div className="form-row">
           <div className="form-group">
-            <label htmlFor="amount">Amount ($) *</label>
+            <label htmlFor="amount">Amount (Rs) *</label>
             <input
               type="number"
               id="amount"

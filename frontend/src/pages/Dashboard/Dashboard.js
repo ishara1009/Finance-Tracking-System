@@ -112,7 +112,7 @@ const Dashboard = () => {
           <div className="card card-income">
             <div className="card-content">
               <h3>Total Income</h3>
-              <p className="amount">${summary?.summary?.total_income?.toFixed(2) || '0.00'}</p>
+              <p className="amount">Rs. {summary?.summary?.total_income?.toFixed(2) || '0.00'}</p>
               <span className="count">{summary?.summary?.income_count || 0} transactions</span>
             </div>
           </div>
@@ -120,7 +120,7 @@ const Dashboard = () => {
           <div className="card card-expense">
             <div className="card-content">
               <h3>Total Expense</h3>
-              <p className="amount">${summary?.summary?.total_expense?.toFixed(2) || '0.00'}</p>
+              <p className="amount">Rs. {summary?.summary?.total_expense?.toFixed(2) || '0.00'}</p>
               <span className="count">{summary?.summary?.expense_count || 0} transactions</span>
             </div>
           </div>
@@ -129,7 +129,7 @@ const Dashboard = () => {
             <div className="card-content">
               <h3>Balance</h3>
               <p className={`amount ${summary?.summary?.balance >= 0 ? 'positive' : 'negative'}`}>
-                ${summary?.summary?.balance?.toFixed(2) || '0.00'}
+                Rs. {summary?.summary?.balance?.toFixed(2) || '0.00'}
               </p>
               <span className="count">Net amount</span>
             </div>
