@@ -1,0 +1,271 @@
+.dashboard {
+  min-height: 100vh;
+  background-color: #f5f7fa;
+}
+
+.dashboard-nav {
+  background: white;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.nav-brand h2 {
+  color: #667eea;
+  margin: 0;
+  font-size: 24px;
+}
+
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-user span {
+  color: #333;
+  font-weight: 500;
+}
+
+.btn-logout {
+  padding: 8px 20px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-logout:hover {
+  background-color: #d32f2f;
+  transform: translateY(-2px);
+}
+
+.dashboard-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.dashboard-header h1 {
+  color: #333;
+  font-size: 32px;
+  margin: 0;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.btn-success,
+.btn-danger {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 14px;
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+}
+
+.btn-success:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(17, 153, 142, 0.4);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+}
+
+.btn-danger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(235, 51, 73, 0.4);
+}
+
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-icon {
+  font-size: 48px;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+}
+
+.card-income .card-icon {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+}
+
+.card-expense .card-icon {
+  background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+}
+
+.card-balance .card-icon {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.card-content {
+  flex: 1;
+}
+
+.card-content h3 {
+  margin: 0 0 8px 0;
+  color: #666;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.card-content .amount {
+  margin: 0 0 4px 0;
+  color: #333;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.card-content .amount.positive {
+  color: #11998e;
+}
+
+.card-content .amount.negative {
+  color: #eb3349;
+}
+
+.card-content .count {
+  color: #999;
+  font-size: 12px;
+}
+
+.charts-section,
+.transactions-section {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-bottom: 24px;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  gap: 20px;
+}
+
+.loader {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #667eea;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: slideUp 0.3s ease-out;
+}
+
+@media (max-width: 768px) {
+  .dashboard-nav {
+    padding: 15px 20px;
+  }
+
+  .nav-brand h2 {
+    font-size: 20px;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .summary-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .action-buttons {
+    width: 100%;
+  }
+
+  .btn-success,
+  .btn-danger {
+    flex: 1;
+  }
+}
