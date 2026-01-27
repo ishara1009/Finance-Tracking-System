@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <div className="home-container">
       <nav className="home-nav">
-        <h2 className="logo">💰 Finance Tracker</h2>
+        <h2 className="logo">Finance Tracker</h2>
         <div className="nav-links">
           <Link to="/login" className="nav-link">
             Login
@@ -39,22 +39,22 @@ const Home = () => {
         <h2>Why Choose Finance Tracker?</h2>
         <div className="features-grid">
           <div className="feature-card">
-            <div className="feature-icon">📊</div>
+            <div className="feature-icon"></div>
             <h3>Visual Analytics</h3>
             <p>Beautiful charts and graphs to understand your spending patterns</p>
           </div>
           <div className="feature-card">
-            <div className="feature-icon">💰</div>
+            <div className="feature-icon"></div>
             <h3>Income Tracking</h3>
             <p>Keep track of all your income sources in one place</p>
           </div>
           <div className="feature-card">
-            <div className="feature-icon">📉</div>
+            <div className="feature-icon"></div>
             <h3>Expense Management</h3>
             <p>Monitor and categorize your expenses effortlessly</p>
           </div>
           <div className="feature-card">
-            <div className="feature-icon">🔒</div>
+            <div className="feature-icon"></div>
             <h3>Secure & Private</h3>
             <p>Your financial data is encrypted and secure</p>
           </div>

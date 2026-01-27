@@ -1,5 +1,6 @@
 # Finance Tracker Web Application
 
+![Finance Tracker Screenshot](frontend/src/assets/image7.png)
 ![Finance Tracker Screenshot](frontend/src/assets/image3.png)
 ![Finance Tracker Dashboard](frontend/src/assets/image4.png)
 ![Finance Tracker Profile](frontend/src/assets/image5.png)
