@@ -64,11 +64,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-5. The `.env` file is already configured with MongoDB connection. If needed, update:
-```
-MONGODB_URI=mongodb+srv://ishghn1234:ishghn2000@cluster0.vo2av.mongodb.net/
-DATABASE_NAME=finance_tracker
-JWT_SECRET_KEY=your-secret-key-change-this-in-production
+SECRET_KEY=your-secret-key-change-this-in-production
 ```
 
 6. Run the Flask server:
