@@ -1,5 +1,8 @@
 # Finance Tracker Web Application
 
+![Finance Tracker Screenshot](frontend/src/assets/image3.png)
+![Finance Tracker Dashboard](frontend/src/assets/image4.png)
+
 A full-stack web application for tracking income and expenses with beautiful visualizations and analytics.
 
 ##  Features
