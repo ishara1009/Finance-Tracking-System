@@ -208,7 +208,7 @@ frontend/
    - Delete transactions with the delete button
 7. **Analytics**: View category-wise breakdown in pie charts
 
-## 🎨 Features Highlight
+##  Features Highlight
 
 ### Income Categories
 - Salary
